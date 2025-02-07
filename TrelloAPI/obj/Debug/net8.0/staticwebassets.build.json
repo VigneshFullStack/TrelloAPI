@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pjvAF89HYQwIZ4q95CyM1IveyzDQEUQi6e66RQwC9zQ=",
+  "Source": "TrelloAPI",
+  "BasePath": "_content/TrelloAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
