@@ -16,4 +16,8 @@ public class Query (
     // Boards
     public Task<IEnumerable<Models.Board>?> GetAllBoardsAsync ( ) =>
         _boardResolver.GetAllBoardsAsync();
+
+    // Board Statuses
+    public Task<IEnumerable<BoardStatusDto>?> GetBoardStatusesAsync ( int workspaceId, int boardId ) =>
+        _boardResolver.GetBoardStatusesAsync(workspaceId, boardId);
 }
