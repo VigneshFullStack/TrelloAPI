@@ -6,13 +6,13 @@ public static class DbContextExtensions
         this DbContext context,
         ILogger logger,
         string storedProcedure,
-        params object[] parameters
+        params SqlParameter[] parameters
     )
     {
         try
         {
-            // Build parameter placeholders (@p0, @p1, @p2...)
-            var paramPlaceholders = string.Join(", ", parameters.Select(( _, i ) => $"@p{i}"));
+            // Generate parameter placeholders
+            var paramPlaceholders = string.Join(", ", parameters.Select(p => "@" + p.ParameterName.TrimStart('@')));
 
             // Execute stored procedure
             var query = await context.Database.SqlQueryRaw<string>(
@@ -28,6 +28,11 @@ public static class DbContextExtensions
 
             return new List<T>();
         }
+        catch (JsonReaderException jsonEx)
+        {
+            logger.LogError(jsonEx, "JSON Deserialization error for {StoredProcedure}: {Error}", storedProcedure, jsonEx.Message);
+            throw;  
+        }
         catch (Exception ex)
         {
             logger.LogError(ex, "Error executing stored procedure: {StoredProcedure} with parameters: {Parameters}",
@@ -40,13 +45,13 @@ public static class DbContextExtensions
         this DbContext context,
         ILogger logger,
         string storedProcedure,
-        params object[] parameters
+        params SqlParameter[] parameters
     )
     {
         try
         {
-            // Build parameter placeholders (@p0, @p1, @p2...)
-            var paramPlaceholders = string.Join(", ", parameters.Select(( _, i ) => $"@p{i}"));
+            // Generate parameter placeholders
+            var paramPlaceholders = string.Join(", ", parameters.Select(p => "@" + p.ParameterName.TrimStart('@')));
 
             // Execute stored procedure
             return await context.Database.ExecuteSqlRawAsync(

@@ -8,10 +8,10 @@ public class BoardQueryResolver (
     private string queryName => GetType().Name;
 
     // Get all boards
-    public async Task<IEnumerable<Models.Board>?> GetAllBoardsAsync ()
+    public async Task<IEnumerable<Models.Board>?> GetBoardsByWorkspaceIdAsync ( int workspaceId )
     {
         return await RepositoryHelper.ExecuteRepositoryWithLoggingAsync(
-            () => _boardRepository.GetAllBoardsAsync(),
+            () => _boardRepository.GetBoardsByWorkspaceIdAsync(workspaceId),
             $"Error retrieving boards in resolver: {queryName}, method: {RepositoryHelper.GetMethodName()}",
             _boardRepository.GetLogger()
         );

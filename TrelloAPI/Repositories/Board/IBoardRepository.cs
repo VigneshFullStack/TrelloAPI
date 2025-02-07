@@ -6,13 +6,14 @@
 public interface IBoardRepository
 {
     /// <summary>
-    /// Retrieves all board entries from the database.
+    /// Retrieves all board entries from the database for a specific workspace.
     /// </summary>
+    /// <param name="workspaceId">The ID of the workspace to filter boards.</param>
     /// <returns>
-    /// A list of <see cref="Models.Board"/> objects representing all the boards in the database.
+    /// A list of <see cref="Models.Board"/> objects representing all the boards in the specified workspace.
     /// Returns <c>null</c> if an error occurs or if no entries are found.
     /// </returns>
-    Task<IEnumerable<Models.Board>?> GetAllBoardsAsync ();
+    Task<IEnumerable<Models.Board>?> GetBoardsByWorkspaceIdAsync ( int workspaceId );
 
     /// <summary>
     /// Retrieves board statuses based on workspace ID and board ID.

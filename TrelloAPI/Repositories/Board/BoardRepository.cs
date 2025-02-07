@@ -16,13 +16,14 @@ public class BoardRepository (
     public ILogger GetLogger () => _logger;
 
     /// <summary>
-    /// Retrieves all board entries from the database.
+    /// Retrieves all board entries from the database for a specific workspace.
     /// </summary>
+    /// <param name="workspaceId">The ID of the workspace to filter boards.</param>
     /// <returns>
-    /// A list of <see cref="Models.Board"/> objects representing all the boards in the database.
+    /// A list of <see cref="Models.Board"/> objects representing all the boards in the specified workspace.
     /// Returns <c>null</c> if an error occurs or if no entries are found.
     /// </returns>
-    public async Task<IEnumerable<Models.Board>?> GetAllBoardsAsync ()
+    public async Task<IEnumerable<Models.Board>?> GetBoardsByWorkspaceIdAsync ( int workspaceId )
     {
         return await RepositoryHelper.ExecuteWithLoggingAsync(
             _contextFactory,
@@ -30,10 +31,11 @@ public class BoardRepository (
             async context =>
             {
                 return await context.Boards
-                    .AsNoTracking()                       
+                    .AsNoTracking()
+                    .Where(b => b.WorkspaceId == workspaceId)
                     .ToListAsync();
             },
-            $"Error retrieving all boards in repository: {repositoryName}, method: {RepositoryHelper.GetMethodName()}"
+            $"Error retrieving boards for Workspace ID: {workspaceId} in repository: {repositoryName}, method: {RepositoryHelper.GetMethodName()}"
         );
     }
 

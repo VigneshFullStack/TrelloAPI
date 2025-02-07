@@ -15,6 +15,7 @@ global using TrelloAPI.Resolvers.Mutations;
 global using TrelloAPI.Resolvers.Query;
 global using TrelloAPI.Repositories.Workspace;
 global using TrelloAPI.Repositories.Board;
+global using TrelloAPI.Repositories.Ticket;
 global using TrelloAPI.Utility;
 global using TrelloAPI.Models;
 global using TrelloAPI.DTO;

@@ -31,6 +31,7 @@ builder.Host.UseSerilog(( context, configuration ) =>
 // Register repositories
 builder.Services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
 builder.Services.AddScoped<IBoardRepository, BoardRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 // Auto-register all Query & Mutation resolvers
 builder.Services.AddResolversFromAssembly(typeof(Program).Assembly);
