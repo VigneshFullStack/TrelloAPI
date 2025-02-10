@@ -24,5 +24,8 @@ public class Query (
 
     // Tickets
     public Task<List<BoardLabelDto>?> GetIndividualBoardTicketsAsync ( int pageIndex, int pageSize, int workspaceId, int boardId ) =>
-      _ticketResolver.GetIndividualBoardTicketsAsync(pageIndex, pageSize, workspaceId, boardId);
+        _ticketResolver.GetIndividualBoardTicketsAsync(pageIndex, pageSize, workspaceId, boardId);
+
+    public Task<IEnumerable<Models.CardMovementRule>?> GetAllCardMovementRulesAsync () =>
+        _ticketResolver.GetAllCardMovementRulesAsync();
 }

@@ -15,5 +15,14 @@ public interface ITicketRepository
     /// </returns>
     Task<List<BoardLabelDto>?> GetIndividualBoardTicketsAsync ( int pageIndex, int pageSize, int workspaceId, int boardId );
 
+    /// <summary>
+    /// Retrieves all card movement rules from the database.
+    /// </summary>
+    /// <returns>
+    /// A list of <see cref="Models.CardMovementRule"/> objects representing all the rules in the database.
+    /// Returns <c>null</c> if an error occurs or if no entries are found.
+    /// </returns>
+    Task<IEnumerable<Models.CardMovementRule>?> GetAllCardMovementRulesAsync ();
+
     ILogger GetLogger ();
 }

@@ -55,4 +55,26 @@ public class TicketRepository (
             return new List<BoardLabelDto>();
         }
     }
+
+    /// <summary>
+    /// Retrieves all card movement rules from the database.
+    /// </summary>
+    /// <returns>
+    /// A list of <see cref="Models.CardMovementRule"/> objects representing all the rules in the database.
+    /// Returns <c>null</c> if an error occurs or if no entries are found.
+    /// </returns>
+    public async Task<IEnumerable<Models.CardMovementRule>?> GetAllCardMovementRulesAsync ()
+    {
+        return await RepositoryHelper.ExecuteWithLoggingAsync(
+            _contextFactory,
+            _logger,
+            async context =>
+            {
+                return await context.CardMovementRules
+                    .AsNoTracking()
+                    .ToListAsync();
+            },
+            $"Error retrieving all card movement rules in repository: {repositoryName}, method: {RepositoryHelper.GetMethodName()}"
+        );
+    }
 }
