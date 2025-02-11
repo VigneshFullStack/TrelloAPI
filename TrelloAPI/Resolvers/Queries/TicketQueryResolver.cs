@@ -26,4 +26,14 @@ public class TicketQueryResolver (
             _ticketRepository.GetLogger()
         );
     }
+
+    // Retrieves card movement rules based on workspaceId and boardId
+    public async Task<List<CardMovementRuleDto>?> GetCardMovementRulesAsync ( int workspaceId, int boardId )
+    {
+        return await RepositoryHelper.ExecuteRepositoryWithLoggingAsync(
+            () => _ticketRepository.GetCardMovementRulesAsync(workspaceId, boardId),
+            $"Error retrieving card movement rules in resolver: {queryName}, method: {RepositoryHelper.GetMethodName()}",
+            _ticketRepository.GetLogger()
+        );
+    }
 }

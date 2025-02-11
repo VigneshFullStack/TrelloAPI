@@ -24,5 +24,16 @@ public interface ITicketRepository
     /// </returns>
     Task<IEnumerable<Models.CardMovementRule>?> GetAllCardMovementRulesAsync ();
 
+    /// <summary>
+    /// Retrieves card movement rules for a specific workspace and board.
+    /// </summary>
+    /// <param name="workspaceId">The ID of the workspace to filter card movement rules.</param>
+    /// <param name="boardId">The ID of the board to retrieve card movement rules from.</param>
+    /// <returns>
+    /// A list of <see cref="CardMovementRuleDto"/> containing card movement rules.
+    /// Returns an empty list if an error occurs.
+    /// </returns>
+    Task<List<CardMovementRuleDto>?> GetCardMovementRulesAsync ( int workspaceId, int boardId );
+
     ILogger GetLogger ();
 }

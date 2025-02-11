@@ -28,4 +28,7 @@ public class Query (
 
     public Task<IEnumerable<Models.CardMovementRule>?> GetAllCardMovementRulesAsync () =>
         _ticketResolver.GetAllCardMovementRulesAsync();
+
+    public Task<List<CardMovementRuleDto>?> GetCardMovementRulesAsync ( int workspaceId, int boardId ) =>
+        _ticketResolver.GetCardMovementRulesAsync(workspaceId, boardId);
 }
