@@ -99,7 +99,7 @@ public class TicketRepository (
             {
                 var result = await context.ExecuteStoredProcedureAsync<CardMovementRuleDto>(
                     _logger,
-                    "dbo.[sp_GetCardMovementRules]",
+                    "dbo.[GetCardMovementRules]",
                     new SqlParameter("@workspace_id", workspaceId),
                     new SqlParameter("@board_id", boardId)
                 );
